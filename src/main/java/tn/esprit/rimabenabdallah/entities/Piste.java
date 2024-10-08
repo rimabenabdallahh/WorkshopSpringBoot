@@ -1,10 +1,9 @@
-package com.example.demo.entities;
+package tn.esprit.rimabenabdallah.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Piste {
@@ -13,7 +12,11 @@ public class Piste {
 private int idPiste;
     private long numPiste;
     private String namePiste;
+    @Enumerated(EnumType.STRING)
     Color color;
+
     private int length;
     private int slope;
+    @ManyToMany
+    Set<Skier> skiers;
 }

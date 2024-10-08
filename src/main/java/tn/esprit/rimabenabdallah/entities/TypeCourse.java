@@ -1,4 +1,4 @@
-package com.example.demo.entities;
+package tn.esprit.rimabenabdallah.entities;
 
 public enum TypeCourse {
     COLLECTIVE_CHILDREN,

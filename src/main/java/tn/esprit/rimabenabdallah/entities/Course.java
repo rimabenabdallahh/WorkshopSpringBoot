@@ -1,10 +1,9 @@
-package com.example.demo.entities;
+package tn.esprit.rimabenabdallah.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 
 @Entity
@@ -15,8 +14,17 @@ public class Course {
     private int idCourse;
     private long numCourse;
     private int level;
-     TypeCourse typeCourse;
+    @Enumerated(EnumType.STRING)
+    TypeCourse typeCourse;
      Support support;
      private float price;
      private int timeSlot;
+     @OneToMany(mappedBy = "course")
+     Set<Registration> registrations;
+
+
+
+
+
+
 }

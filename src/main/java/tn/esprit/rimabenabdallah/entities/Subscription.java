@@ -1,10 +1,7 @@
-package com.example.demo.entities;
+package tn.esprit.rimabenabdallah.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -17,5 +14,10 @@ public class Subscription {
     private LocalDate startDate;
     private LocalDate endDate;
     private float price;
+    @Enumerated(EnumType.STRING)
     TypeSubscription typeSub;
+    @OneToOne
+    Skier skier;
+
+
 }

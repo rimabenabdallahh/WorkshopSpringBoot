@@ -1,10 +1,7 @@
-package com.example.demo.entities;
+package tn.esprit.rimabenabdallah.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Registration {
@@ -13,5 +10,8 @@ public class Registration {
     private int idRegistration;
     private long numRegistration;
     private int numWeek;
-
+     @ManyToOne
+     Skier skier;
+     @ManyToOne
+    Course course;
 }
