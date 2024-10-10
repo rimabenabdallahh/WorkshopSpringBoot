@@ -3,8 +3,10 @@ package tn.esprit.rimabenabdallah.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
-public class Registration {
+public class Registration implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idRegistration;

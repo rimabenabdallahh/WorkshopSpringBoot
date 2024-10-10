@@ -3,10 +3,11 @@ package tn.esprit.rimabenabdallah.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-public class Piste {
+public class Piste implements Serializable {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 private int idPiste;

@@ -3,10 +3,11 @@ package tn.esprit.rimabenabdallah.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-public class Subscription {
+public class Subscription implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idSubscription;
