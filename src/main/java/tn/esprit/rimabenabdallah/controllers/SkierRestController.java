@@ -34,7 +34,11 @@ private final ISkierServices skierServices;
     public List<Skier> retrieveAllSkiers(){
         return skierServices.retrieveAllSkiers();
     }
-
+    @PutMapping("/assignToPiste/{numPiste},{numSkier}")
+    public void assignSkier(@PathVariable Long numSkier,@PathVariable Long numPiste)
+    {
+        skierServices.assignSkierToPiste(numSkier,numPiste);
+    }
     @DeleteMapping("/delete/{numSkier}")
     public void deleteSkieur(@PathVariable Long numSkier) {
         skierServices.removeSkier(numSkier);

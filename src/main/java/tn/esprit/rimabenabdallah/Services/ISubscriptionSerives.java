@@ -9,7 +9,7 @@ public interface ISubscriptionSerives {
     Subscription addSubscription(Subscription subscription);
     List<Subscription> retrieveAllSubscriptions();
     Subscription updateSubscription(Subscription subscription);
-    Subscription retrieveSubscription(Long numSubscription);
-    void removeSubscription(Long numSubscription);
+    Subscription retrieveSubscription(Long numSub);
+    void removeSubscription(Long numSub);
 
 }

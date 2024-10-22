@@ -1,5 +1,6 @@
 package tn.esprit.rimabenabdallah.Services;
 
+import tn.esprit.rimabenabdallah.entities.Piste;
 import tn.esprit.rimabenabdallah.entities.Skier;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface ISkierServices {
     Skier retrieveSkier(Long numSkier);
     List<Skier> retrieveAllSkiers();
     void removeSkier(Long numSkier);
+    void assignSkierToPiste(Long numSkier, Long numPiste);
 }
