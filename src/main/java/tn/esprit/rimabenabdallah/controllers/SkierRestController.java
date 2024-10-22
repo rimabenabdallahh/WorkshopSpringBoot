@@ -7,6 +7,8 @@ import tn.esprit.rimabenabdallah.Services.ISkierServices;
 import tn.esprit.rimabenabdallah.Services.SkierServiceImpl;
 import tn.esprit.rimabenabdallah.entities.Skier;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("skier")
@@ -18,8 +20,25 @@ private final ISkierServices skierServices;
             public Skier saveSkier(
                     @RequestBody Skier skier){
         return skierServices.addSkier(skier);
-    }@GetMapping("/get/{numSkier}")
-    public Skier getSkier(Long numSkier){
+    }
+    @GetMapping("/get/{numSkier}")
+    public Skier getSkier( @PathVariable Long numSkier){
       return skierServices.retrieveSkier(numSkier);
     }
+    @PutMapping("/update")
+    public Skier updateSkier(@RequestBody Skier skier)
+    {
+        return skierServices.updateSkier(skier);
+    }
+    @GetMapping("/all")
+    public List<Skier> retrieveAllSkiers(){
+        return skierServices.retrieveAllSkiers();
+    }
+
+    @DeleteMapping("/delete/{numSkier}")
+    public void deleteSkieur(@PathVariable Long numSkier) {
+        skierServices.removeSkier(numSkier);
+    }
+
+
 }

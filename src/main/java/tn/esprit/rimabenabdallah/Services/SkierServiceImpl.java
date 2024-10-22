@@ -1,6 +1,7 @@
 package tn.esprit.rimabenabdallah.Services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import tn.esprit.rimabenabdallah.entities.Skier;
 import tn.esprit.rimabenabdallah.repositories.ISkierRepository;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+
 public class SkierServiceImpl implements ISkierServices {
     private final ISkierRepository skierRepository;
     @Override
