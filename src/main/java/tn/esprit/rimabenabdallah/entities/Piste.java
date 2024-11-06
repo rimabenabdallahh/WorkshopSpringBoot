@@ -18,7 +18,7 @@ import java.util.Set;
 public class Piste implements Serializable {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
-private int idPiste;
+
     private long numPiste;
     private String namePiste;
     @Enumerated(EnumType.STRING)

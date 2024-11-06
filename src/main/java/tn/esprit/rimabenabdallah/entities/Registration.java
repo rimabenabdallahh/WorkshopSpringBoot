@@ -17,7 +17,6 @@ import java.io.Serializable;
 public class Registration implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idRegistration;
     private long numRegistration;
     private int numWeek;
      @ManyToOne

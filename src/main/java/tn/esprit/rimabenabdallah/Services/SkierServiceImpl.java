@@ -1,13 +1,14 @@
 package tn.esprit.rimabenabdallah.Services;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import tn.esprit.rimabenabdallah.entities.Color;
 import tn.esprit.rimabenabdallah.entities.Piste;
 import tn.esprit.rimabenabdallah.entities.Skier;
 import tn.esprit.rimabenabdallah.repositories.IPisteRepository;
 import tn.esprit.rimabenabdallah.repositories.ISkierRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -16,9 +17,14 @@ import java.util.List;
 public class SkierServiceImpl implements ISkierServices {
     private final ISkierRepository skierRepository;
     private final IPisteRepository pisteRepository;
+    //private final ISubscription subscriptionRepository;
     @Override
     public Skier addSkier ( Skier skier)
-    {  return skierRepository.save(skier);
+    {
+        // Subscription subscription = skier.getSubscription();
+      //  subscriptionRepository.save(subscription);
+        //   skier.setSubscription(subscription);
+        return skierRepository.save(skier);
 
     }
 
@@ -49,6 +55,28 @@ public class SkierServiceImpl implements ISkierServices {
         piste.getSkiers().add(skier);
         pisteRepository.save(piste);
 
+    }
+
+    @Override
+    public Skier getByName(String name) {
+        return skierRepository.findByName(name);
+    }
+
+    @Override
+    public List<Skier> getByBirthDate(LocalDate birthDate) {
+        return skierRepository.findByBirthDate(birthDate);
+    }
+
+    @Override
+    public Skier assignSkierToPiste(String name, Color color) {
+        Skier skier = skierRepository.findByName(name);
+        List<Piste> pistes = pisteRepository.findByColor(color);
+        pistes.forEach(piste -> {
+            piste.getSkiers().add(skier);
+            pisteRepository.save(piste);
+        });
+
+        return skier;
     }
 
 

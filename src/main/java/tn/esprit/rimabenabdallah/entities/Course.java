@@ -20,7 +20,6 @@ public class Course implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idCourse;
     private long numCourse;
     private int level;
     @Enumerated(EnumType.STRING)

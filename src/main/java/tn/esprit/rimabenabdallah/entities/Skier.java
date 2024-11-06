@@ -19,7 +19,7 @@ public class Skier implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int idSkier;
-    private long numSkier;
+
     private String name;
     private LocalDate birthDate;
     private int age;

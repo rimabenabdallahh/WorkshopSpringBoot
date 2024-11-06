@@ -18,7 +18,6 @@ import java.util.Set;
 public class Instructor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idInstructor;
     private long numInstructor;
     private String firstName;
     private String lastName;

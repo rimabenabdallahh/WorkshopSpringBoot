@@ -18,7 +18,6 @@ import java.time.LocalDate;
 public class Subscription implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idSubscription;
     private long numSub;
     private LocalDate startDate;
     private LocalDate endDate;
