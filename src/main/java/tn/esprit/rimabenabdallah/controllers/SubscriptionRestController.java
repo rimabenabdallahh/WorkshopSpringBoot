@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.rimabenabdallah.Services.SubscriptionServiceImpl;
 import tn.esprit.rimabenabdallah.entities.Subscription;
+import tn.esprit.rimabenabdallah.entities.TypeSubscription;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,5 +42,10 @@ public class SubscriptionRestController {
     @DeleteMapping("/delete/{numSubscription}")
     public void deleteSubscription(@PathVariable Long numSub) {
         subscriptionService.removeSubscription(numSub);
+    }
+
+    @GetMapping("/{typeSub}")
+    public Set<Subscription> getSubscriptionsByType(@PathVariable("typeSub") TypeSubscription typeSubscription){
+        return subscriptionService.getSubscriptionByType(typeSubscription);
     }
 }

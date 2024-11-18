@@ -4,10 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.rimabenabdallah.entities.Skier;
 import tn.esprit.rimabenabdallah.entities.Subscription;
+import tn.esprit.rimabenabdallah.entities.TypeSubscription;
 import tn.esprit.rimabenabdallah.repositories.IPisteRepository;
 import tn.esprit.rimabenabdallah.repositories.ISubscription;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @Service
 @RequiredArgsConstructor
 public class SubscriptionServiceImpl implements ISubscriptionSerives {
@@ -35,5 +39,10 @@ public class SubscriptionServiceImpl implements ISubscriptionSerives {
     @Override
     public void removeSubscription(Long numSub) {
         subscriptionRepository.deleteById(numSub);
+    }
+
+    @Override
+    public Set<Subscription> getSubscriptionByType(TypeSubscription type) {
+        return new HashSet<>(subscriptionRepository.findByTypeSubOrderByStartDate(type));
     }
 }

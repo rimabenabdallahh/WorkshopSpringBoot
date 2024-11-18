@@ -37,4 +37,22 @@ public class InstructorRestController {
     public void deleteInstructor(@PathVariable Long numInstructor) {
         instructorService.removeInstructor(numInstructor);
     }
+    @PostMapping("/addInstructorToCourse/{numCourse}")
+    public Instructor addInstructorToCourses(
+            @RequestBody Instructor instructor,
+            @PathVariable List<Long> numCourse) {
+        return instructorService.addInstructorToCourse(instructor,numCourse);
+    }
+    @PutMapping("/addAndAssignToCourses")
+    public Instructor addAndAssignToCourses(@RequestBody Instructor instructor){
+        return  instructorService.addAndAssignCourses(instructor);
+    }
+
+
+
+
+
+
+
 }
+

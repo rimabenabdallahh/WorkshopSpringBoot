@@ -7,6 +7,7 @@ import tn.esprit.rimabenabdallah.Services.ISkierServices;
 import tn.esprit.rimabenabdallah.Services.SkierServiceImpl;
 import tn.esprit.rimabenabdallah.entities.Color;
 import tn.esprit.rimabenabdallah.entities.Skier;
+import tn.esprit.rimabenabdallah.entities.TypeSubscription;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -57,5 +58,17 @@ private final ISkierServices skierServices;
     public Skier assignSkierToPiste(@PathVariable String name, @PathVariable Color color) {
         Skier assignedSkier = skierServices.assignSkierToPiste(name, color);
         return assignedSkier;
+    }
+
+
+    @PostMapping("/addAndAssignToCourse/{numCourse}")
+    public Skier addSkierAndAssignToCourse(
+            @RequestBody Skier skier,
+            @PathVariable Long numCourse) {
+        return skierServices.addSkierAndAssignToCourse(skier, numCourse);
+    }
+    @GetMapping("/getSkiersBySubscription/{type}")
+    public List<Skier> retrieveSkiersBySubscriptionType(@PathVariable("type")TypeSubscription typeSubscription) {
+        return skierServices.retrieveSkiersBySubscriptionType(typeSubscription);
     }
 }

@@ -2,13 +2,11 @@ package tn.esprit.rimabenabdallah.Services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import tn.esprit.rimabenabdallah.entities.Color;
-import tn.esprit.rimabenabdallah.entities.Piste;
-import tn.esprit.rimabenabdallah.entities.Skier;
-import tn.esprit.rimabenabdallah.repositories.IPisteRepository;
-import tn.esprit.rimabenabdallah.repositories.ISkierRepository;
+import tn.esprit.rimabenabdallah.entities.*;
+import tn.esprit.rimabenabdallah.repositories.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -17,7 +15,9 @@ import java.util.List;
 public class SkierServiceImpl implements ISkierServices {
     private final ISkierRepository skierRepository;
     private final IPisteRepository pisteRepository;
-    //private final ISubscription subscriptionRepository;
+    private final ICourseRepository courseRepository;
+    private final IRegistrationRepository registrationRepository;
+    private final ISubscription subscriptionRepository;
     @Override
     public Skier addSkier ( Skier skier)
     {
@@ -79,5 +79,31 @@ public class SkierServiceImpl implements ISkierServices {
         return skier;
     }
 
+
+
+            @Override
+            public Skier addSkierAndAssignToCourse(Skier skier, Long numCourse) {
+                Subscription subscription = new Subscription();
+                skier.setSubscription(subscription);
+                subscriptionRepository.save(subscription);
+                Course course = courseRepository.findById(numCourse).orElse(null);
+                Registration registration = new Registration();
+                registration.setNumWeek(LocalDate.now().getDayOfYear() / 7);
+                registration.setCourse(course);
+                registration.setSkier(skier);
+                registrationRepository.save(registration);
+
+                if (skier.getRegistrations() == null) {
+                    skier.setRegistrations(new HashSet<>());
+                }
+                skier.getRegistrations().add(registration);
+
+                return skierRepository.save(skier);
+            }
+
+    @Override
+    public List<Skier> retrieveSkiersBySubscriptionType(TypeSubscription typeSubscription) {
+        return skierRepository.findBySubscription_TypeSub(typeSubscription);
+    }
 
 }
