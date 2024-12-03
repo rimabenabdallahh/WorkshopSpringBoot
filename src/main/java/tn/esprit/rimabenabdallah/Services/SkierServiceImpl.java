@@ -1,6 +1,8 @@
 package tn.esprit.rimabenabdallah.Services;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import tn.esprit.rimabenabdallah.entities.*;
 import tn.esprit.rimabenabdallah.repositories.*;
@@ -8,7 +10,10 @@ import tn.esprit.rimabenabdallah.repositories.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 
@@ -79,31 +84,31 @@ public class SkierServiceImpl implements ISkierServices {
         return skier;
     }
 
-
-
-            @Override
-            public Skier addSkierAndAssignToCourse(Skier skier, Long numCourse) {
-                Subscription subscription = new Subscription();
-                skier.setSubscription(subscription);
-                subscriptionRepository.save(subscription);
-                Course course = courseRepository.findById(numCourse).orElse(null);
-                Registration registration = new Registration();
-                registration.setNumWeek(LocalDate.now().getDayOfYear() / 7);
-                registration.setCourse(course);
-                registration.setSkier(skier);
-                registrationRepository.save(registration);
-
-                if (skier.getRegistrations() == null) {
-                    skier.setRegistrations(new HashSet<>());
+    @Override
+    public Skier addSkierAndAssignToCourse(Skier skier, Long numCourse) {
+                Course course =courseRepository.findById(numCourse).orElse(null);
+                for(Registration registration:skier.getRegistrations()){
+                    registration.setSkier(skier);
+                    registration.setCourse(course);
+                    registrationRepository.save(registration);
                 }
-                skier.getRegistrations().add(registration);
-
                 return skierRepository.save(skier);
             }
+
 
     @Override
     public List<Skier> retrieveSkiersBySubscriptionType(TypeSubscription typeSubscription) {
         return skierRepository.findBySubscription_TypeSub(typeSubscription);
     }
+
+    @Scheduled(cron = "*/15 * * * * *")
+    @Override
+    public void getSkiersNotif() {
+           log.info("Notification sent to all skiers");
+           log.debug("In method:getSkiersNotif");
+           log.warn("warning !!");
+           log.error("Ceci est une exception!");
+    }
+
 
 }

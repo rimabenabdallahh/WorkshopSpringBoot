@@ -17,4 +17,5 @@ public interface ISkierServices {
   Skier assignSkierToPiste(String name, Color color);
   Skier addSkierAndAssignToCourse(Skier skier, Long numCourse);
     List<Skier> retrieveSkiersBySubscriptionType(TypeSubscription typeSubscription);
+    void getSkiersNotif();
 }

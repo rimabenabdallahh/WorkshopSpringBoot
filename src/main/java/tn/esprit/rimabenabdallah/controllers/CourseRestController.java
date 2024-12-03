@@ -31,7 +31,6 @@ public class CourseRestController {
     public List<Course> getAllCourses() {
         return courseService.retrieveAllCourses();
     }
-
     @DeleteMapping("/delete/{numCourse}")
     public void deleteCourse(@PathVariable Long numCourse) {
         courseService.removeCourse(numCourse);

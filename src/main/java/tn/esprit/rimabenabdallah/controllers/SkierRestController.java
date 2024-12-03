@@ -60,7 +60,6 @@ private final ISkierServices skierServices;
         return assignedSkier;
     }
 
-
     @PostMapping("/addAndAssignToCourse/{numCourse}")
     public Skier addSkierAndAssignToCourse(
             @RequestBody Skier skier,

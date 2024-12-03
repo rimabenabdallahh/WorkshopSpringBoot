@@ -1,6 +1,7 @@
 package tn.esprit.rimabenabdallah.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,8 +25,8 @@ public class Subscription implements Serializable {
     private float price;
     @Enumerated(EnumType.STRING)
     TypeSubscription typeSub;
-    @OneToOne
-    Skier skier;
+
+
 
 
 }

@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ISubscription extends CrudRepository<Subscription, Long> {
     List<Subscription> findByTypeSubOrderByStartDate(TypeSubscription type);
+    
 }
